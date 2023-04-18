@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Curso Javascript Completo 2018</title>
+    <meta charset="utf-8">
+
+</head>
+
+<body>
+    <h1 id="title1">Curso Javascript Completo</h1>
+
+    <main class="cmain" id="idmain">
+        <h2>Subtítulo</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+    </main>
+
+    <form action="#">
+        <input type="text" id="txtNome" placeholder="Nome"><br><br>
+        <input type="text" id="txtEmail" placeholder="E-mail"><br><br>
+
+        <input type="checkbox" id="contrato" onclick="aceitandoContrato()">
+        <label for="contrato">Li e aceito o seguinte contrato</label><br><br>
+        <textarea name="" id="" cols="30" rows="10" readonly>Este contrato nos dá direito à ...</textarea><br><br>
+        <input type="submit" id="cadastrar" value="Cadastrar"> <!--aqui estava disabled mas não é indicado colocar aqui porque se por algum motivo não funcionar o JS, a página não fica funcional (ou seja, o botão cadastrar nunca poderá ser ativado, o ideal é colocar no JS)-->
+    </form>
+
+    <script>
+        const botaoCadastrar = document.querySelector("#cadastrar")
+        botaoCadastrar.disabled = true
+        
+        function aceitandoContrato() {
+            const checkbox = document.querySelector("#contrato")
+            let checked = checkbox.checked
+            console.log(checked)
+
+            /*
+            if(checked) {
+                botaoCadastrar.disabled = false
+            } else {
+                botaoCadastrar.disabled = true
+            }*/
+            //PODE SER SUBSTITUÍDO POR:
+            botaoCadastrar.disabled = !checked
+            
+        }
+        
+
+    </script>
+
+</body>
+
+</html>

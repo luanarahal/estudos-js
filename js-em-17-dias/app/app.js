@@ -9,15 +9,37 @@ let numAnos;
 let ehBomPagador;
 let avalistas;
 
-function cadastraCliente(nomeCliente, sobrenomeCliente, idadeCliente, valorEmprestimoCliente, numAnosCliente = 2, ehBomPagadorCliente = false, avalistasCliente) {
-    nome = nomeCliente;
-    sobrenome = sobrenomeCliente;
-    idade = idadeCliente;
-    valorEmprestimo = valorEmprestimoCliente;
-    numAnos = numAnosCliente;
-    ehBomPagador = ehBomPagadorCliente;
-    taxaDeJuros = defineTaxa(idadeCliente);
-    avalistas = avalistasCliente
+function cadastraCliente(nomeCliente, sobrenomeCliente, idadeCliente, valorEmprestimoCliente, numAnosCliente = 2, ehBomPagadorCliente = false, avalistasCliente){
+    cliente = {
+        nome: nomeCliente,
+        sobrenome: sobrenomeCliente,
+        idade: idadeCliente,
+        emprestimo: {
+            valorEmprestimo: valorEmprestimoCliente,
+            numAnos: numAnosCliente,
+            ehBomPagador: ehBomPagadorCliente,
+            taxaDeJuros: defineTaxa(idadeCliente),
+            avalistas: avalistasCliente
+        },
+        adicionaAvalista: function(avalista) {
+            this.emprestimo.avalistas.push(avalista);
+        },
+        removeAvalista: function() {
+            this.emprestimo.avalistas.pop();
+        },
+        editaAvalista: function(nomeAvalista, indice) {
+            this.emprestimo.avalistas[indice] = nomeAvalista;
+        },
+        ordenaAvalista: function() {
+            this.emprestimo.avalistas.sort();
+        },
+        exibeAvalista: function() {
+            this.emprestimo.avalistas.forEach((avalista, indice) => {
+                console.log(`O ${indice + 1}º avalista é ${avalista}`)
+            })
+        }
+    }
+    return cliente;
 }
 
 function defineTaxa(idadeCliente) {
@@ -32,11 +54,25 @@ function defineTaxa(idadeCliente) {
     }
 }
 
-cadastraCliente("Luana", "Luz", 26, 300000, 2, true)
-console.log(nome)
-console.log(sobrenome)
-console.log(taxaDeJuros)
+const cliente1 = cadastraCliente("Luana", "Luz", 26, 300000, 2, true, ["Adriano", "Ricardo", "Cris"])
+//console.log(cliente1)
 
+/*
+cliente1.adicionaAvalista("José") //adicinará José no array
+cliente1.adicionaAvalista("Marcos") //adicionará Marcos no array
+
+cliente1.removeAvalista() //como Marcos está por último, irá removê-lo
+cliente1.editaAvalista("Adriano Prates", [0]) //como "Adriano" está na primeira posição do array, iremos alterar para "Adriano Prates"
+cliente1.ordenaAvalista() //ordenando o array para ficar em ordem alfabética
+cliente1.exibeAvalista() //irá aparecer "O 1º avalista é Adriano Prates, o 2º avalista é Ricardo.... etc"
+console.log(cliente1.emprestimo.avalistas)
+*/
+
+/*console.log(nome)
+console.log(sobrenome)
+console.log(taxaDeJuros)*/
+
+/*
 cadastraCliente("Adriano", "Prates", 49, 150000, 9, false)
 console.log(nome)
 console.log(sobrenome)
@@ -125,3 +161,22 @@ console.table(clientes)
 //adicionando a Sol no início da tabela
 clientes.unshift(["Sol", 9, false])
 console.table(clientes)
+
+*/
+
+function adicionaInfLogin(cliente, email, senha) {
+    
+    if(email.indexOf("@") !== -1 && senha.length > 5) {
+        cliente.login = {
+            email: email,
+            senha: senha
+        }
+        return cliente;
+    } else {
+        return "Credenciais inválidas"
+    }    
+}
+
+console.log(adicionaInfLogin(cliente1, "luana@gmail.com", "lu12345"))
+console.log(adicionaInfLogin(cliente1, "luanarahal", "lu987654"))
+console.log(adicionaInfLogin(cliente1, "luanarahal@gmail.com", "lu98"))

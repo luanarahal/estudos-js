@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="title1">Custo Javascript Completo 2018</h1>
+    <main class="cmain" id="idmain">
+        <h2>Subtítulo</h2>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit assumenda ut ducimus nam cumque, ullam pariatur repellat enim iure rem omnis odit ratione non, laborum tenetur dolorem eum earum quidem?</p>
+    </main>
+
+    <form action="#">
+        <input type="text" id="txtNome" placeholder="Nome"><br><br>
+        <input type="text" id="txtEmail" placeholder="E-mail" maxlength="10" class="input input-email"><br><br> <!--maxlength mostra o tamanho máximo de caracteres que são aceitos como entrada-->
+        <input type="checkbox" id="contrato">
+        <label for="contrato">Li e aceito o contrato</label><br><br>
+        <textarea name="" id="" cols="30" rows="10" readonly>
+            Este contrato ...
+        </textarea> <!--readyonly não deixa editar o campo-->
+    </form>
+
+    <script>
+        const txtNome = document.querySelector("#txtNome")
+        const txtEmail = document.querySelector("#txtEmail")
+        const labelContrato = document.querySelector("label[for='contrato']")
+        txtNome.value = "Luana"
+        txtNome.disabled = true //não deixando alterar o nome
+        console.log(txtNome.value)
+        console.log(labelContrato.htmlFor) //mostrando que com htmlFor posso mostrar o valor do atributo For  --- HTML: for --- JS: htmlFor
+        //txtEmail.readOnly = true ----- pode usar para não habilitar campo  --- HTML: readyonly --- JS: readyOnly
+        console.log(txtEmail.maxLength) //--- HTML: maxlength --- JS: maxLength
+        console.log(txtEmail.className) //mostrando o nome da classe do input E-mail
+    </script>
+</body>
+</html>
